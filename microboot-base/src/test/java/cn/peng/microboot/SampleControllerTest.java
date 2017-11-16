@@ -18,6 +18,7 @@ public class SampleControllerTest {
 	@Resource
 	private SampleController sampleController;
 	
+	
 	@Test
 	public void testHome() {
 		String str = this.sampleController.home();

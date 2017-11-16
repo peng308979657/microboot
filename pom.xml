@@ -10,6 +10,7 @@
   <url>http://maven.apache.org</url>
 
   <properties>
+  	
   	<spring-boot-dependencies.version>1.5.8.RELEASE</spring-boot-dependencies.version>
   	<jdk.version>1.8</jdk.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -30,19 +31,35 @@
 <build>
 	<finalName>microboot</finalName>
 	<plugins>
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-compiler-plugin</artifactId>
-			<configuration>
-				<source>${jdk.version}</source><!-- 源代码使用的开发版本 -->
-				<target>${jdk.version}</target><!-- 需要生成的目标class文件的编译版本 -->
-				<encode>${project.build.sourceEncoding}</encode>
-			</configuration>
+			<plugin>	<!-- 该插件的主要功能是进行项目的打包发布处理 -->
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>	<!-- 设置程序执行的主类 -->
+					<mainClass>cn.mldn.microboot.StartSpringBootMain</mainClass>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
-	</plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${jdk.version}</source><!-- 源代码使用的开发版本 -->
+					<target>${jdk.version}</target><!-- 需要生成的目标class文件的编译版本 -->
+					<encode>${project.build.sourceEncoding}</encode>
+				</configuration>
+			</plugin>
+		</plugins>
 </build>
 	<modules>
-		<module>microboot-base</module>
+	<module>microboot-base</module>
     <module>microboot-test</module>
+    <module>microboot-annotation</module>
+	<module>microboot-deep</module>
   </modules>
 </project>
